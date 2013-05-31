@@ -12,11 +12,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: fact-cave_development
+  database: fact_cave_development
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: fact_cave
+  password: fact_cave
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,18 +24,16 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: fact-cave_test
+  database: fact_cave_test
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: fact_cave
+  password: fact_cave
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: fact-cave_production
+  database: fact_cave_production
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: fact_cave
+  password: "super secret"
