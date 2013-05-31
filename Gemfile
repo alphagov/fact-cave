@@ -20,4 +20,5 @@ group :development, :test do
   gem 'rspec-rails', '2.13.2'
   gem 'simplecov-rcov', '0.2.3', :require => false
   gem 'ci_reporter', '1.8.4'
+  gem 'capybara', '2.0.3' # 2.1.0 doesn't work on ruby 1.9.2
 end
