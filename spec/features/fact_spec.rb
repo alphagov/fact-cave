@@ -10,11 +10,13 @@ feature "getting a single fact" do
     fact_response = JSON.load(page.body)
 
     page.status_code.should == 200
-    fact_response.slice("name", "description", "slug", "value").should == {
+    fact_response.should == {
+      "response_info" => {"status"=>"ok"},
+      "id" => "vat-rate",
       "name" => "VAT rate",
       "description" => "The national VAT rate",
-      "slug" => "vat-rate",
-      "value" => "20%"
+      "value" => "20%",
+      "updated_at" => fact.updated_at.xmlschema
     }
   end
 end
