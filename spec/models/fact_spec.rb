@@ -8,12 +8,14 @@ describe Fact do
     end
 
     it "should build out a fact when given the correct fields" do
-      fact = Fact.new(name: "Test", description: "This is a test fact", value: 23)
+      fact = Fact.new(name: "Test", description: "This is a test fact",
+                      value: 23, slug: "test")
       fact.should be_valid
     end
 
     it "should be persisted" do
-      fact = Fact.new(name: "Test", description: "This is a test fact", value: 23)
+      fact = Fact.new(name: "Test", description: "This is a test fact",
+                      value: 23, slug: "test")
       fact.save
       fact.should be_persisted
     end
