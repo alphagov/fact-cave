@@ -9,6 +9,9 @@ gem 'aws-ses', '0.5.0', :require => 'aws/ses'
 
 gem 'unicorn', '4.6.2'
 
+gem 'plek', '1.1.0'
+gem 'gds-sso', '3.0.0'
+
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
