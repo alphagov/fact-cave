@@ -6,13 +6,15 @@ class FactPresenter
 
   def as_json(options = {})
     {
-      response_info: {
+      _response_info: {
         status: options[:status] || "ok",
       },
       id: @fact.slug,
-      name: @fact.name,
-      description: @fact.description,
-      value: @fact.value,
+      details: {
+        description: @fact.description,
+        value: @fact.value
+      },
+      title: @fact.name,
       updated_at: @fact.updated_at
     }
   end

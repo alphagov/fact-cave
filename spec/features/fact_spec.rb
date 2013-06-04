@@ -11,11 +11,13 @@ feature "getting a single fact" do
 
     page.status_code.should == 200
     fact_response.should == {
-      "response_info" => {"status"=>"ok"},
+      "_response_info" => {"status"=>"ok"},
       "id" => "vat-rate",
-      "name" => "VAT rate",
-      "description" => "The national VAT rate",
-      "value" => "20%",
+      "details" => {
+        "description" => "The national VAT rate",
+        "value" => "20%"
+      },
+      "title" => "VAT rate",
       "updated_at" => fact.updated_at.xmlschema
     }
   end
