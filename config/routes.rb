@@ -1,4 +1,3 @@
 FactCave::Application.routes.draw do
-
-  root :to => Proc.new {[200, {}, ["Fact Cave"]]}
+  match "facts/:slug" => "facts#show"
 end
