@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(:version => 20130604104805) do
 
   create_table "facts", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.text     "description"
-    t.string   "value"
+    t.string   "name",        :null => false
+    t.string   "slug",        :null => false
+    t.text     "description", :null => false
+    t.string   "value",       :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
