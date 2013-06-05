@@ -3,9 +3,8 @@ require 'spec_helper'
 feature "serving facts" do
 
   it "should return a JSON object of an existing fact" do
-    fact = Fact.new(name: "VAT rate", description: "The national VAT rate",
+    fact = FactoryGirl.create(:fact, name: "VAT rate", description: "The national VAT rate",
                     value: "20%", slug: "vat-rate")
-    fact.save
 
     visit "/facts/vat-rate"
     fact_response = JSON.load(page.body)
