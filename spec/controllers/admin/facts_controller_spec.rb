@@ -34,6 +34,7 @@ describe Admin::FactsController do
         :description => "The truth hurts sometimes", :value => "Life's not fair"
       }
       response.status.should == 302
+      Fact.last.name.should == 'The painful truth'
     end
   end
 
