@@ -11,7 +11,7 @@
     <% @facts.each do |fact| %>
       <tr>
         <td><%= fact.name %></td>
-        <td><%= link_to "Edit", edit_admin_fact_path(fact.to_param), :class => 'btn btn-success' %></td>
+        <td><%= link_to "Edit", edit_admin_fact_path(fact.to_param), :class => 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>
