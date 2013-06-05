@@ -14,7 +14,13 @@ feature "creating a fact" do
 
   it "should display a table of existing facts" do
 
-    visit "/admin/facts/#{@fact.to_param}/edit"
+    visit "/admin/facts"
+
+    within('table tr', :text => 'Fact of the day') do
+      click_on 'Edit'
+    end
+
+    current_path.should == "/admin/facts/#{@fact.to_param}/edit"
 
     within('form') do
       
