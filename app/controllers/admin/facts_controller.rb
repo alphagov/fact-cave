@@ -11,7 +11,7 @@ class Admin::FactsController < Admin::AdminController
   def create
     @fact = Fact.new params[:fact]
     if @fact.save
-      redirect_to admin_facts_path, :message => "Fact saved"
+      redirect_to admin_facts_path, :notice => "Fact saved"
     else
       render :edit, :alert => "Could not save fact"
     end
@@ -24,7 +24,7 @@ class Admin::FactsController < Admin::AdminController
   def update
     @fact = Fact.find params[:id]
     if @fact.update_attributes(params[:fact])
-      redirect_to admin_facts_path, :message => "Fact updated"
+      redirect_to admin_facts_path, :notice => "Fact updated"
     else
       render :edit, :alert => "Could not update fact"
     end
@@ -33,7 +33,7 @@ class Admin::FactsController < Admin::AdminController
   def destroy
     @fact = Fact.find params[:id]
     if @fact.destroy
-      redirect_to admin_facts_path, :message => "Fact deleted"
+      redirect_to admin_facts_path, :notice => "Fact deleted"
     else
       render :index, :alert => "Could not update fact"
     end
