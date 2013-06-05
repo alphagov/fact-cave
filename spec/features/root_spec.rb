@@ -2,10 +2,6 @@ require 'spec_helper'
 
 feature "The root URL" do
 
-  before :each do
-    #login_as_stub_user
-  end
-
   it "should return a basic string" do
     visit "/"
 
