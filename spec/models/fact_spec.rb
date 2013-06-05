@@ -1,35 +1,32 @@
 require 'spec_helper'
 
 describe Fact do
-  describe "building out a fact" do
-    it "requires a name, description and a value" do
-      fact = Fact.new
-      fact.should_not be_valid
+  describe "validations" do
+    let(:fact) { FactoryGirl.build(:fact) }
+
+    it "should be valid by default" do
+      expect(fact).to be_valid
     end
 
-    it "should build out a fact when given the correct fields" do
-      fact = Fact.new(name: "Test", description: "This is a test fact",
-                      value: 23, slug: "test")
-      fact.should be_valid
+    it "should require a name" do
+      fact.name = ''
+      expect(fact).not_to be_valid
+      expect(fact).to have(1).error_on(:name)
     end
 
-    it "should be persisted" do
-      fact = Fact.new(name: "Test", description: "This is a test fact",
-                      value: 23, slug: "test")
-      fact.save
-      fact.should be_persisted
-    end
+    describe "on slug" do
+      it "should be required" do
+        fact.slug = ''
+        expect(fact).not_to be_valid
+        expect(fact).to have(1).error_on(:slug)
+      end
 
-    it "should have unique slugs" do
-      fact = Fact.new(name: "VAT rate", description: "The national VAT rate",
-                      value: "20%", slug: "vat-rate")
-      fact.save
-      fact2 = Fact.new(name: "VAT rate", description: "The national VAT rate",
-                       value: "20%", slug: "vat-rate")
-      fact2.save
-
-      fact.should be_persisted
-      fact2.should_not be_persisted
+      it "should be unique" do
+        fact2 = FactoryGirl.create(:fact, :slug => 'a-fact')
+        fact.slug = 'a-fact'
+        expect(fact).not_to be_valid
+        expect(fact).to have(1).error_on(:slug)
+      end
     end
   end
 end
