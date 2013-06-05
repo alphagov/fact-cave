@@ -16,9 +16,12 @@ feature "deleting a fact" do
       page.should have_button 'Delete'
       click_on 'Delete'
     end
+   
+    within('table') do
+      page.should have_no_content 'Fact 1'
+    end
     
-    page.should have_no_content 'Fact 1'
-    page.should have_content 'Fact deleted'
+    page.should have_content 'Fact 1 deleted'
   end
 
 end

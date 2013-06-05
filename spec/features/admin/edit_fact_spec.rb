@@ -40,7 +40,7 @@ feature "creating a fact" do
     current_path.should == '/admin/facts'
 
     page.should have_content 'Factoid'
-    page.should have_content 'Fact updated'
+    page.should have_content 'Factoid updated'
   end
 
 end
