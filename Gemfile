@@ -12,6 +12,9 @@ gem 'unicorn', '4.6.2'
 gem 'plek', '1.3.1'
 gem 'gds-sso', '3.0.3'
 
+gem 'therubyracer'
+gem 'less-rails-bootstrap'
+
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
