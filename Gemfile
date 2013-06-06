@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'mysql2'
+gem 'mysql2', '0.3.11'
 
 gem 'exception_notification', '3.0.1'
 gem 'aws-ses', '0.5.0', :require => 'aws/ses'
@@ -12,8 +12,8 @@ gem 'unicorn', '4.6.2'
 gem 'plek', '1.3.1'
 gem 'gds-sso', '3.0.3'
 
-gem 'therubyracer'
-gem 'less-rails-bootstrap'
+gem 'therubyracer', '0.11.4'
+gem 'less-rails-bootstrap', '2.3.2'
 
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
