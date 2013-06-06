@@ -6,6 +6,27 @@ feature "creating a fact" do
     login_as_stub_user
   end
 
+  it "should display validation errors if the fact couldn't be saved" do
+
+    visit "/admin/facts/new"
+    
+    within('form') do
+      page.should have_field 'Name'
+      click_on 'Create Fact'
+    end
+
+    within('div.error', :text => 'Name') do
+      page.should have_content "can't be blank"
+    end
+    within('div.error', :text => 'Slug') do
+      page.should have_content "can't be blank"
+    end
+    within('div.error', :text => 'Value') do
+      page.should have_content "can't be blank"
+    end
+    page.should have_content 'Could not save fact'
+  end
+  
   it "should display a form with fields and controls to submit a new fact" do
 
     visit "/admin/facts/new"
