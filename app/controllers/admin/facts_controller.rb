@@ -13,7 +13,8 @@ class Admin::FactsController < Admin::AdminController
     if @fact.save
       redirect_to admin_facts_path, :notice => "#{@fact.name} saved"
     else
-      render :edit, :alert => "Could not save fact"
+      flash[:alert] = "Could not save fact"
+      render :new
     end
   end
 
@@ -26,7 +27,8 @@ class Admin::FactsController < Admin::AdminController
     if @fact.update_attributes(params[:fact])
       redirect_to admin_facts_path, :notice => "#{@fact.name} updated"
     else
-      render :edit, :alert => "Could not update fact"
+      flash[:alert] = "Could not update fact"
+      render :edit
     end
   end
 
