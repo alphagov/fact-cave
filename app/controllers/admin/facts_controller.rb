@@ -1,5 +1,7 @@
 class Admin::FactsController < Admin::AdminController
 
+  before_filter :find_fact, :only => [:edit, :update, :destroy]
+
   def index
     @facts = Fact.order(:slug)
   end
@@ -19,11 +21,9 @@ class Admin::FactsController < Admin::AdminController
   end
 
   def edit
-    @fact = Fact.find params[:id]
   end
 
   def update
-    @fact = Fact.find params[:id]
     if @fact.update_attributes(params[:fact])
       redirect_to admin_facts_path, :notice => "#{@fact.name} updated"
     else
@@ -33,12 +33,17 @@ class Admin::FactsController < Admin::AdminController
   end
 
   def destroy
-    @fact = Fact.find params[:id]
     if @fact.destroy
       redirect_to admin_facts_path, :notice => "#{@fact.name} deleted"
     else
       render :index, :alert => "Could not update fact"
     end
+  end
+
+  private
+
+  def find_fact
+    @fact = Fact.find params[:id]
   end
 
 end
