@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "creating a fact" do
+feature "editing a fact" do
 
   before :each do
     login_as_stub_user
@@ -12,7 +12,7 @@ feature "creating a fact" do
                               :value => 'Today is Wednesday')
   end
 
-  it "should display a table of existing facts" do
+  it "should display a form filled with the values of an existing fact" do
 
     visit "/admin/facts"
 
