@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604104805) do
+ActiveRecord::Schema.define(:version => 20130604120955) do
 
   create_table "facts", :force => true do |t|
     t.string   "name",        :null => false
@@ -23,5 +23,15 @@ ActiveRecord::Schema.define(:version => 20130604104805) do
   end
 
   add_index "facts", ["slug"], :name => "index_facts_on_slug", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "uid"
+    t.string   "email"
+    t.string   "name"
+    t.text     "permissions"
+    t.boolean  "remotely_signed_out", :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
 
 end
