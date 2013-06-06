@@ -6,7 +6,7 @@ feature "creating a fact" do
     login_as_stub_user
   end
 
-  it "should display a table of existing facts" do
+  it "should display a form with fields and controls to submit a new fact" do
 
     visit "/admin/facts/new"
 
