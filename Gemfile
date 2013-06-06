@@ -14,6 +14,7 @@ gem 'gds-sso', '3.0.3'
 
 gem 'therubyracer', '0.11.4'
 gem 'less-rails-bootstrap', '2.3.2'
+gem 'jquery-rails', '2.2.1'
 
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
