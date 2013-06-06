@@ -7,7 +7,6 @@
       <th>Slug</th>
       <th>Value</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,10 +15,8 @@
         <td><%= fact.name %></td>
         <td><%= fact.slug %></td>
         <td><%= fact.value %></td>
-        <td>
+        <td class="controls">
           <%= link_to "Edit", edit_admin_fact_path(fact.to_param), :class => 'btn btn-primary' %>
-        </td>
-        <td>
           <%= button_to "Delete", admin_fact_path(fact.to_param), 
             :confirm => "Permanently delete '#{fact.name}'?", :method => :delete, :class => 'btn btn-danger' %>
         </td>
