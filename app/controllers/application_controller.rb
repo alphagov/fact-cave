@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include GDS::SSO::ControllerMethods
+
   protect_from_forgery
 
   rescue_from ActiveRecord::RecordNotFound, :with => :error_404
