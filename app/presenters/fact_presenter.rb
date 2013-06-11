@@ -14,7 +14,7 @@ class FactPresenter
         description: @fact.description,
         value: @fact.value
       },
-      title: @fact.name,
+      name: @fact.name,
       updated_at: @fact.updated_at
     }
   end

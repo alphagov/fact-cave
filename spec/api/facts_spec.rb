@@ -17,7 +17,7 @@ feature "serving facts" do
         "description" => "The national VAT rate",
         "value" => "20%"
       },
-      "title" => "VAT rate",
+      "name" => "VAT rate",
       "updated_at" => fact.updated_at.xmlschema
     }
   end
