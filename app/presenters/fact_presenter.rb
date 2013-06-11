@@ -9,7 +9,7 @@ class FactPresenter
       _response_info: {
         status: options[:status] || "ok",
       },
-      id: @fact.slug,
+      id: @view_context.fact_url(@fact.slug),
       details: {
         description: @fact.description,
         value: @fact.value

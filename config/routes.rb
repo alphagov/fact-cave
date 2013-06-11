@@ -7,7 +7,7 @@ FactCave::Application.routes.draw do
     root :to => "facts#index"
   end
 
-  get "facts/:slug" => "facts#show"
+  get "facts/:slug" => "facts#show", :as => :fact
 
   root :to => Proc.new {[200, {}, ["Fact Cave"]]}
 

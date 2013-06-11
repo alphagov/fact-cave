@@ -12,7 +12,7 @@ feature "serving facts" do
 
     fact_response.should == {
       "_response_info" => {"status"=>"ok"},
-      "id" => "vat-rate",
+      "id" => "http://www.example.com/facts/vat-rate",
       "details" => {
         "description" => "The national VAT rate",
         "value" => "20%"
