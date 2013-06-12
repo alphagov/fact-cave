@@ -27,6 +27,19 @@ describe Fact do
         expect(fact).not_to be_valid
         expect(fact).to have(1).error_on(:slug)
       end
+
+      it "should look like a slug" do
+        [
+          'a space',
+          'under_score',
+          'full.stop',
+          'this&that',
+        ].each do |slug|
+          fact.slug = slug
+          expect(fact).not_to be_valid
+          expect(fact).to have(1).error_on(:slug)
+        end
+      end
     end
   end
 end
