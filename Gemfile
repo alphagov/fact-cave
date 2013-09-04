@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'mongo_mapper', '0.12.0'
+gem 'bson_ext', '1.9.2'
+
 gem 'mysql2', '0.3.11'
 
 gem 'exception_notification', '3.0.1'
