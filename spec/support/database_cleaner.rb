@@ -1,8 +1,4 @@
 RSpec.configure do |config|
-  config.before :suite do
-    DatabaseCleaner[:mongo_mapper].strategy = :truncation
-  end    
-
   config.before :each do
     DatabaseCleaner.start
   end
