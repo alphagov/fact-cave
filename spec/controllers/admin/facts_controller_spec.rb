@@ -22,8 +22,7 @@ describe Admin::FactsController do
       get :new
       response.status.should == 200
       assigns(:fact).class.should == Fact
-      assigns(:fact).id.should == nil
-      
+      assigns(:fact).should be_new_record
     end
   end
 
@@ -70,8 +69,7 @@ describe Admin::FactsController do
     it "should delete a fact" do
       delete :destroy, :id => @fact.to_param
       assigns(:fact).should == @fact
-      expect { Fact.find(@fact.to_param) }.to raise_error
+      expect( Fact.find(@fact.to_param) ).to be_nil
     end
   end
-
 end
