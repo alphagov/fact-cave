@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'mongoid', '3.1.4'
 gem 'mysql2', '0.3.11'
 
 gem 'exception_notification', '3.0.1'
