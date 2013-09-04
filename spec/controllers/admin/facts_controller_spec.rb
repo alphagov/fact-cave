@@ -22,8 +22,7 @@ describe Admin::FactsController do
       get :new
       response.status.should == 200
       assigns(:fact).class.should == Fact
-      assigns(:fact).id.should == nil
-      
+      assigns(:fact).should be_new_record
     end
   end
 
@@ -34,7 +33,7 @@ describe Admin::FactsController do
         :description => "The truth hurts sometimes", :value => "Life's not fair"
       }
       response.status.should == 302
-      Fact.find_by_slug('the-painful-truth').name.should == 'The painful truth'
+      Fact.find_by(:slug => 'the-painful-truth').name.should == 'The painful truth'
     end
   end
 
