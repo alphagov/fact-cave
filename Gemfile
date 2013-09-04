@@ -32,4 +32,5 @@ group :development, :test do
   gem 'ci_reporter', '1.8.4'
   gem 'capybara', '2.0.3' # 2.1.0 doesn't work on ruby 1.9.2
   gem 'factory_girl_rails', '4.2.1'
+  gem 'database_cleaner', '1.1.1'
 end
