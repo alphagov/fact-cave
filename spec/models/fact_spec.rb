@@ -47,5 +47,15 @@ describe Fact do
         end
       end
     end
+    it "should require a data type" do
+      fact.data_type = ''
+      expect(fact).not_to be_valid
+      expect(fact).to have(1).error_on(:data_type)
+    end
+  end
+  describe "data_types" do
+    it "should be an array of permitted types" do
+      assert_equal [:currency, :date, :numeric, :text], Fact::DATA_TYPES
+    end
   end
 end

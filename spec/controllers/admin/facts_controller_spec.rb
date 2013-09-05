@@ -30,7 +30,8 @@ describe Admin::FactsController do
     it "should save a fact" do
       post :create, :fact => {
         :slug => "the-painful-truth", :name => "The painful truth",
-        :description => "The truth hurts sometimes", :value => "Life's not fair"
+        :description => "The truth hurts sometimes", :value => "Life's not fair",
+        :data_type => "text"
       }
       response.status.should == 302
       Fact.find_by(:slug => 'the-painful-truth').name.should == 'The painful truth'

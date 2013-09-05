@@ -37,12 +37,14 @@ feature "creating a fact" do
       page.should have_field 'Slug'
       page.should have_field 'Description'
       page.should have_field 'Value'
+      page.should have_select 'Data type'
       page.should have_button 'Create Fact'
 
       fill_in 'Name', :with => 'Factoid'
       fill_in 'Slug', :with => 'factoid'
       fill_in 'Description', :with => 'This is a factiod'
       fill_in 'Value', :with => 'Factoids are small truths which float around a larger fact'
+      select 'Text', :from => 'Data type'
       click_on 'Create Fact'
     end
 
