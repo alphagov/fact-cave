@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :error_404
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :error_404
 
   private
 

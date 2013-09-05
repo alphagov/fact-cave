@@ -28,6 +28,12 @@ describe Fact do
         expect(fact).to have(1).error_on(:slug)
       end
 
+      it "should have a db level uniqueness constraint" do
+        fact2 = FactoryGirl.create(:fact, :slug => 'a-fact')
+        fact.slug = 'a-fact'
+        expect(lambda { fact.save :validate => false }).to raise_error(Moped::Errors::OperationFailure)
+      end
+
       it "should look like a slug" do
         [
           'a space',
