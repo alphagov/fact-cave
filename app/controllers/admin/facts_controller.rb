@@ -3,7 +3,7 @@ class Admin::FactsController < Admin::AdminController
   before_filter :find_fact, :only => [:edit, :update, :destroy]
 
   def index
-    @facts = Fact.order(:slug)
+    @facts = Fact.asc(:slug)
   end
 
   def new
