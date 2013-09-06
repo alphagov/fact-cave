@@ -21,7 +21,7 @@ class Fact
   field :value, :type => String
   field :data_type, :type => String
   field :numeric_format, :type => String
-  field :currency_code, :type => String
+  field :currency_code, :type => String, :default => 'GBP'
 
   index({:slug => 1}, {:unique => true})
 

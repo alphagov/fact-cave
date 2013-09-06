@@ -57,6 +57,11 @@ describe Fact do
   describe "formatted_value" do
     let(:fact) { FactoryGirl.build(:fact) }
     describe "for currency data type" do
+      it "should default to Pound Sterling" do
+        fact.value = '99'
+        fact.data_type = 'currency'
+        expect(fact.currency_code).to eq("GBP")
+      end
       it "should use the currency symbol when present" do
         fact.value = '10000'
         fact.data_type = 'currency'
