@@ -58,16 +58,16 @@ describe Fact do
     let(:fact) { FactoryGirl.build(:fact) }
     describe "for currency data type" do
       it "should use the currency symbol when present" do
-        fact.value = '100'
+        fact.value = '10000'
         fact.data_type = 'currency'
         fact.currency_code = 'EUR'
-        expect(fact.formatted_value).to eq("€100")
+        expect(fact.formatted_value).to eq("€10,000")
       end
       it "should use the name as a suffix if no currency symbol is present" do
         fact.value = '1000'
         fact.data_type = 'currency'
         fact.currency_code = 'ZAR'
-        expect(fact.formatted_value).to eq("1000 Rand")
+        expect(fact.formatted_value).to eq("1,000 Rand")
       end
     end
     describe "for date data type" do
@@ -77,6 +77,19 @@ describe Fact do
         expect(fact.formatted_value).to eq("2013-09-07")
       end
     end
+    describe "for numeric data type" do
+      it "should delimit the value with commas as per the style guide" do
+        fact.value = '10000000'
+        fact.data_type = 'numeric'
+        expect(fact.formatted_value).to eq("10,000,000")
+      end
+    end
+    it "should use formatting symbols where present" do
+      fact.value = '42'
+      fact.data_type = 'numeric'
+      fact.numeric_format = 'percentage'
+      expect(fact.formatted_value).to eq("42%")
+    end
   end
   describe "data types" do
     it "should be an array of permitted types" do
@@ -85,7 +98,7 @@ describe Fact do
   end
   describe "numeric formats" do
     it "should be a hash of numeric formats" do
-      expect(Fact::NUMERIC_FORMATS[:percentage]).to eq("%")
+      expect(Fact::NUMERIC_FORMATS[:percentage]).to eq("%d%")
     end
   end
   describe "currency codes data" do

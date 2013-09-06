@@ -3,9 +3,10 @@
 class Fact
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActionView::Helpers::NumberHelper
 
   DATA_TYPES = [:currency, :date, :numeric, :text]
-  NUMERIC_FORMATS = { :percentage => '%' }
+  NUMERIC_FORMATS = { :percentage => "%d%" }
   
   CURRENCY_SYMBOLS = {
     :eur => "€",
@@ -42,10 +43,11 @@ class Fact
 
   def formatted_currency_value
     currency_symbol = CURRENCY_SYMBOLS[currency_code.downcase.to_sym]
+    amount = number_with_delimiter(value)
     if currency_symbol
-      "#{currency_symbol}#{value}"
+      "#{currency_symbol}#{amount}"
     else
-      "#{value} #{self.class.currency_codes.key(currency_code)}"
+      "#{amount} #{self.class.currency_codes.key(currency_code)}"
     end
   end
 
@@ -54,7 +56,12 @@ class Fact
   end
 
   def formatted_numeric_value
-    value
+    if numeric_format.nil?
+      number_with_delimiter(value)
+    else
+      format = NUMERIC_FORMATS[numeric_format.to_sym]
+      number_with_delimiter(sprintf(format, value))
+    end
   end
 
   def formatted_text_value
