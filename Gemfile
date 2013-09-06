@@ -10,7 +10,7 @@ gem 'aws-ses', '0.5.0', :require => 'aws/ses'
 gem 'unicorn', '4.6.2'
 
 gem 'plek', '1.3.1'
-gem 'gds-sso', '3.0.3'
+gem 'gds-sso', '3.1.0'
 
 gem 'therubyracer', '0.11.4'
 gem 'less-rails-bootstrap', '2.3.2'
