@@ -36,7 +36,15 @@ feature "editing a fact" do
       fill_in 'Slug', :with => 'factoid'
       fill_in 'Description', :with => 'This is a factoid'
       fill_in 'Value', :with => '20'
+
+      select 'Currency', :from => 'Data type'
+      page.should have_select 'Currency code'
+      
       select 'Numeric', :from => 'Data type'
+      page.should have_select 'Numeric format'
+
+      select 'Percentage', :from => 'Numeric format'
+
       click_on 'Update Fact'
     end
 

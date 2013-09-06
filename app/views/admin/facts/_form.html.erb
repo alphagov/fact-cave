@@ -33,6 +33,18 @@
         <%= error_message_for_field(@fact, :data_type) %>
       </div>    
     </div>
+    <div class="control-group format-options currency">
+      <%= f.label :currency_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :currency_code, Fact.currency_codes.to_a %>
+      </div>
+    </div>
+    <div class="control-group format-options numeric">
+      <%= f.label :numeric_format, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :numeric_format, numeric_format_options %>
+      </div>
+    </div>
     <div class="control-group">
       <div class="controls">
         <%= f.submit :class => 'btn btn-success' %>

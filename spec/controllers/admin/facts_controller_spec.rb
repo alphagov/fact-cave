@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe Admin::FactsController do
@@ -30,11 +31,13 @@ describe Admin::FactsController do
     it "should save a fact" do
       post :create, :fact => {
         :slug => "the-painful-truth", :name => "The painful truth",
-        :description => "The truth hurts sometimes", :value => "Life's not fair",
-        :data_type => "text"
+        :description => "The truth hurts sometimes", :value => "100",
+        :data_type => "numeric", :numeric_format => "percentage"
       }
       response.status.should == 302
-      Fact.find_by(:slug => 'the-painful-truth').name.should == 'The painful truth'
+      fact = Fact.find_by(:slug => 'the-painful-truth')
+      fact.name.should == 'The painful truth'
+      fact.formatted_value.should == "100%"
     end
   end
 
@@ -56,10 +59,12 @@ describe Admin::FactsController do
     it "should update a fact" do
       put :update, :id => @fact.to_param, :fact => {
         :slug => "the-painful-truth", :name => "The painful truth",
-        :description => "The truth hurts sometimes", :value => "Life's not fair" 
+        :description => "The truth hurts sometimes", :value => "1000000",
+        :data_type => "currency", :currency_code => "EUR"
       }
       response.status.should == 302 
       assigns(:fact).should == @fact
+      assigns(:fact).formatted_value.should == "€1,000,000"
     end
   end
 
