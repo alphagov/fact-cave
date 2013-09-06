@@ -36,7 +36,7 @@
     <div class="control-group format-options currency">
       <%= f.label :currency_code, :class => 'control-label' %>
       <div class="controls">
-        <%= f.select :currency_code, Fact.currency_codes.to_a %>
+        <%= f.select :currency_code, currency_format_options(@fact.currency_code) %>
       </div>
     </div>
     <div class="control-group format-options numeric">
