@@ -4,7 +4,7 @@ feature "serving facts" do
 
   it "should return a JSON object of an existing fact" do
     fact = FactoryGirl.create(:fact, name: "VAT rate", description: "The national VAT rate",
-                    value: "20%", slug: "vat-rate")
+                    value: "20", slug: "vat-rate", data_type: "numeric", numeric_format: "percentage")
 
     get "/facts/vat-rate"
     response.should be_success
@@ -15,7 +15,8 @@ feature "serving facts" do
       "id" => "http://www.example.com/facts/vat-rate",
       "details" => {
         "description" => "The national VAT rate",
-        "value" => "20%"
+        "value" => "20",
+        "formatted_value" => "20%"
       },
       "name" => "VAT rate",
       "updated_at" => fact.updated_at.xmlschema

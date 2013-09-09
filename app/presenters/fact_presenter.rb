@@ -12,7 +12,8 @@ class FactPresenter
       id: fact_id_url,
       details: {
         description: @fact.description,
-        value: @fact.value
+        value: @fact.value,
+        formatted_value: @fact.formatted_value
       },
       name: @fact.name,
       updated_at: @fact.updated_at
