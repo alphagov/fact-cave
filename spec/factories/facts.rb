@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:slug) {|n| "fact-#{n}" }
     name            "Test Fact"
     value           "42"
+    data_type       "numeric"
   end
 end

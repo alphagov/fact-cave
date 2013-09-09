@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe Fact do
@@ -47,5 +48,17 @@ describe Fact do
         end
       end
     end
+    it "should require a data type" do
+      fact.data_type = ''
+      expect(fact).not_to be_valid
+      expect(fact).to have(1).error_on(:data_type)
+    end
   end
+
+  describe "data types" do
+    it "should be an array of permitted types" do
+      expect(Fact::DATA_TYPES).to eq([:currency, :date, :numeric, :text])
+    end
+  end
+
 end
