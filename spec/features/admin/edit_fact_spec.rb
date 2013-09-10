@@ -5,19 +5,19 @@ feature "editing a fact" do
   before :each do
     login_as_stub_user
 
-    @fact = FactoryGirl.create(:fact,
-                              :name => 'Fact of the day',
-                              :slug => 'fact-of-the-day',
-                              :description => 'Only true for a day',
-                              :value => 'Today is Wednesday',
-                              :data_type => 'text')
+    @fact = FactoryGirl.create(:currency_fact,
+                              :name => 'Vehicle excise duty',
+                              :slug => 'uk-tax-disc',
+                              :description => 'The price of a tax disc',
+                              :currency_code => 'GBP',
+                              :value => 180.0)
   end
 
   it "should display a form filled with the values of an existing fact" do
 
     visit "/admin/facts"
 
-    within('table tr', :text => 'Fact of the day') do
+    within('table tr', :text => 'Vehicle excise duty') do
       click_on 'Edit'
     end
 
@@ -25,33 +25,25 @@ feature "editing a fact" do
 
     within('form') do
       
-      page.should have_field 'Name', :with => 'Fact of the day'
-      page.should have_field 'Slug', :with => 'fact-of-the-day'
-      page.should have_field 'Description', :with => 'Only true for a day'
-      page.should have_field 'Value', :with => 'Today is Wednesday'
-      page.should have_select 'Data type', :selected => 'Text'
-      page.should have_button 'Update Fact'
+      page.should have_field 'Name', :with => 'Vehicle excise duty'
+      page.should have_field 'Slug', :with => 'uk-tax-disc'
+      page.should have_field 'Description', :with => 'The price of a tax disc'
+      page.should have_field 'Value', :with => '180.0'
+      page.should have_button 'Update Currency fact'
 
-      fill_in 'Name', :with => 'Factoid'
-      fill_in 'Slug', :with => 'factoid'
-      fill_in 'Description', :with => 'This is a factoid'
-      fill_in 'Value', :with => '20'
+      fill_in 'Name', :with => 'UK vehicle excise duty for 12 months'
+      fill_in 'Slug', :with => 'uk-tax-disc-12-months'
+      fill_in 'Description', :with => 'The price of a tax disc for a year'
+      fill_in 'Value', :with => '190'
 
-      select 'Currency', :from => 'Data type'
       page.should have_select 'Currency code'
-      
-      select 'Numeric', :from => 'Data type'
-      page.should have_select 'Numeric format'
 
-      select 'Percentage', :from => 'Numeric format'
-
-      click_on 'Update Fact'
+      click_on 'Update Currency fact'
     end
 
     current_path.should == '/admin/facts'
 
-    page.should have_content 'Factoid'
-    page.should have_content 'Factoid updated'
+    page.should have_content 'UK vehicle excise duty for 12 months updated'
   end
 
 end

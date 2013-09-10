@@ -12,11 +12,4 @@ describe FactsHelper do
       options.should =~ /<optgroup label="All"/
     end
   end
-
-  describe "numeric_format_options" do
-    it "should make an options array of common numeric formats" do
-      options = numeric_format_options
-      options.should eq([["None"], ["Percentage", "percentage"]])
-    end
-  end
 end
