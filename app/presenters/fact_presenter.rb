@@ -1,4 +1,5 @@
 class FactPresenter
+
   def initialize(fact, view_context)
     @fact = fact
     @view_context = view_context
@@ -13,13 +14,26 @@ class FactPresenter
       details: {
         description: @fact.description,
         value: @fact.value,
-        formatted_value: @fact.formatted_value
+        formatted_value: formatted_value
       },
       name: @fact.name,
       updated_at: @fact.updated_at
     }
   end
 
+  def formatted_value
+    case @fact.class.name
+    when "CurrencyFact"
+      formatted_currency_value
+    when "DateFact"
+      formatted_date_value
+    when "NumericFact"
+      formatted_numeric_value
+    else
+      @fact.value
+    end
+  end
+  
   private
 
   # Returns the url to be used as the id in the JSON response.
@@ -35,5 +49,29 @@ class FactPresenter
     else
       @view_context.fact_url(@fact.slug)
     end
+  end
+
+  def formatted_currency_value
+    currency_symbol = CurrencyFact::CURRENCY_SYMBOLS[@fact.currency_code.downcase.to_sym]
+    amount = sprintf("%.2f", @fact.value) 
+    amount = @view_context.number_with_delimiter(amount)
+    if currency_symbol
+      "#{currency_symbol}#{amount}"
+    else
+      "#{amount} #{self.class.currency_codes.key(@fact.currency_code)}"
+    end
+  end
+
+  def formatted_date_value
+    @fact.value.strftime("%Y-%m-%d")
+  end
+
+  def formatted_numeric_value
+    value = @fact.value % 1 == 0 ? @fact.value.to_i : @fact.value 
+    "#{@view_context.number_with_delimiter(value)}#{@fact.unit}"
+  end
+
+  def self.currency_codes
+    @currency_codes ||= YAML.load(File.open("lib/data/iso_4217_currency_codes.yml").read)  
   end
 end
