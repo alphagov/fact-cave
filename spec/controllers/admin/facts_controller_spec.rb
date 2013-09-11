@@ -58,7 +58,6 @@ describe Admin::FactsController do
       fact = DateFact.find_by(:slug => 'battle-of-hastings')
       fact.name.should == 'Battle of Hastings'
       fact.value.should == DateTime.parse('14 Oct 1066')
-      fact.currency_code.should == 'GBP'
     end
     it "should save a numeric fact" do
       post :create, :numeric_fact => {

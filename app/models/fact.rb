@@ -8,8 +8,6 @@ class Fact
   field :slug, :type => String
   field :description, :type => String
   field :value, :type => String
-  field :numeric_format, :type => String
-  field :currency_code, :type => String, :default => 'GBP'
 
   index({:slug => 1}, {:unique => true})
 
