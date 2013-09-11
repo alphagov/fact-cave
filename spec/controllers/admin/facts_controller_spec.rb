@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe Admin::FactsController do
@@ -33,7 +34,40 @@ describe Admin::FactsController do
         :description => "The truth hurts sometimes", :value => "Life's not fair"
       }
       response.status.should == 302
-      Fact.find_by(:slug => 'the-painful-truth').name.should == 'The painful truth'
+      fact = Fact.find_by(:slug => 'the-painful-truth')
+      fact.name.should == 'The painful truth'
+    end
+    it "should save a currency fact" do
+      post :create, :currency_fact => {
+        :slug => "uk-tax-disc", :name => "UK tax disc",
+        :description => "Price of a tax disc", :value => 199.99,
+        :currency_code => 'GBP'
+      }
+      response.status.should == 302
+      fact = CurrencyFact.find_by(:slug => 'uk-tax-disc')
+      fact.name.should == 'UK tax disc'
+      fact.value.should == BigDecimal('199.99')
+      fact.currency_code.should == 'GBP'
+    end
+    it "should save a date fact" do
+      post :create, :date_fact => {
+        :slug => "battle-of-hastings", :name => "Battle of Hastings",
+        :description => "The date of the Battle of Hastings", :value => "14 Oct 1066"
+      }
+      response.status.should == 302
+      fact = DateFact.find_by(:slug => 'battle-of-hastings')
+      fact.name.should == 'Battle of Hastings'
+      fact.value.should == DateTime.parse('14 Oct 1066')
+    end
+    it "should save a numeric fact" do
+      post :create, :numeric_fact => {
+        :slug => 'life-the-universe-and-everything', :name => 'Life the universe and everything',
+        :description => 'The answer to the ultimate question of life, the universe and everything',
+        :value => '42'
+      }
+      response.status.should == 302
+      fact = NumericFact.find_by(:slug => 'life-the-universe-and-everything')
+      fact.value.should == 42.0
     end
   end
 
@@ -55,7 +89,8 @@ describe Admin::FactsController do
     it "should update a fact" do
       put :update, :id => @fact.to_param, :fact => {
         :slug => "the-painful-truth", :name => "The painful truth",
-        :description => "The truth hurts sometimes", :value => "Life's not fair" 
+        :description => "The truth hurts sometimes", :value => "1000000",
+        :data_type => "currency", :currency_code => "EUR"
       }
       response.status.should == 302 
       assigns(:fact).should == @fact

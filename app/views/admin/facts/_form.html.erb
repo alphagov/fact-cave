@@ -26,6 +26,22 @@
         <%= error_message_for_field(@fact, :value) %>
       </div>    
     </div>
+    <% if @fact.class == CurrencyFact %>
+    <div class="control-group format-options currency">
+      <%= f.label :currency_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :currency_code, currency_format_options((@fact.currency_code || 'GBP')) %>
+      </div>
+    </div>
+    <% end %>
+    <% if @fact.class == NumericFact %>
+    <div class="control-group format-options numeric">
+      <%= f.label :unit, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :unit, :placeholder => '%' %>
+      </div>
+    </div>
+    <% end %>
     <div class="control-group">
       <div class="controls">
         <%= f.submit :class => 'btn btn-success' %>

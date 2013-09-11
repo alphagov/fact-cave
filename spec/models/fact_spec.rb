@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe Fact do
@@ -47,5 +48,38 @@ describe Fact do
         end
       end
     end
+  end
+end
+
+describe CurrencyFact do
+  let(:fact) { FactoryGirl.build(:currency_fact) }
+  it "should store a BigDecimal value" do
+    expect(fact.value.class).to be(BigDecimal)
+  end
+  it "should have a currency code" do
+    expect(fact.currency_code).to eq('GBP')
+  end
+  it "should validate the presence of a currency code" do
+    fact.currency_code = nil
+    fact.valid?
+    expect(fact).to have(1).error_on(:currency_code)
+  end
+end 
+
+describe DateFact do
+  it "should store a DateTime value" do
+    fact = FactoryGirl.build(:date_fact)
+    expect(fact.value.class).to be(DateTime)
+  end
+end
+
+describe NumericFact do
+  it "should store a Float value" do
+    fact = FactoryGirl.build(:numeric_fact)
+    expect(fact.value.class).to be(Float)
+  end
+  it "can hold a formatting symbol" do
+    fact = FactoryGirl.build(:numeric_fact)
+    expect(fact.unit).to eq('%')
   end
 end
