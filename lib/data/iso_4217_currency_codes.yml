@@ -1,171 +1,178 @@
 ---
-Afghani: AFN
-ADB Unit of Account: XUA
-Algerian Dinar: DZD
-Argentine Peso: ARS
-Armenian Dram: AMD
-Aruban Florin: AWG
-Australian Dollar: AUD
-Azerbaijanian Manat: AZN
-Bahamian Dollar: BSD
-Bahraini Dinar: BHD
-Baht: THB
-Balboa: PAB
-Barbados Dollar: BBD
-Belarussian Ruble: BYR
-Belize Dollar: BZD
-Bermudian Dollar: BMD
-Bolivar: VEF
-Boliviano: BOB
-Brazilian Real: BRL
-Brunei Dollar: BND
-Bulgarian Lev: BGN
-Burundi Franc: BIF
-Canadian Dollar: CAD
-Cape Verde Escudo: CVE
-Cayman Islands Dollar: KYD
-CFA Franc BCEAO: XOF
-CFA Franc BEAC: XAF
-CFP Franc: XPF
-Chilean Peso: CLP
-Colombian Peso: COP
-Comoro Franc: KMF
-Congolese Franc: CDF
-Convertible Mark: BAM
-Cordoba Oro: NIO
-Costa Rican Colon: CRC
-Croatian Kuna: HRK
-Cuban Peso: CUP
-Czech Koruna: CZK
-Dalasi: GMD
-Danish Krone: DKK
-Denar: MKD
-Djibouti Franc: DJF
-Dobra: STD
-Dominican Peso: DOP
-Dong: VND
-East Caribbean Dollar: XCD
-Egyptian Pound: EGP
-El Salvador Colon: SVC
-Ethiopian Birr: ETB
-Euro: EUR
-Falkland Islands Pound: FKP
-Fiji Dollar: FJD
-Forint: HUF
-Ghana Cedi: GHS
-Gibraltar Pound: GIP
-Gourde: HTG
-Guarani: PYG
-Guinea Franc: GNF
-Guyana Dollar: GYD
-Hong Kong Dollar: HKD
-Hryvnia: UAH
-Iceland Krona: ISK
-Indian Rupee: INR
-Iranian Rial: IRR
-Iraqi Dinar: IQD
-Jamaican Dollar: JMD
-Jordanian Dinar: JOD
-Kenyan Shilling: KES
-Kina: PGK
-Kip: LAK
-Kuwaiti Dinar: KWD
-Kwacha: MWK
-Kwanza: AOA
-Kyat: MMK
-Lari: GEL
-Latvian Lats: LVL
-Lebanese Pound: LBP
-Lek: ALL
-Lempira: HNL
-Leone: SLL
-Liberian Dollar: LRD
-Libyan Dinar: LYD
-Lilangeni: SZL
-Lithuanian Litas: LTL
-Loti: LSL
-Malagasy Ariary: MGA
-Malaysian Ringgit: MYR
-Mauritius Rupee: MUR
-Mexican Peso: MXN
-Mexican Unidad de Inversion (UDI): MXV
-Moldovan Leu: MDL
-Moroccan Dirham: MAD
-Mozambique Metical: MZN
-Mvdol: BOV
-Naira: NGN
-Nakfa: ERN
-Namibia Dollar: NAD
-Nepalese Rupee: NPR
-Netherlands Antillean Guilder: ANG
-New Israeli Sheqel: ILS
-New Romanian Leu: RON
-New Taiwan Dollar: TWD
-New Zealand Dollar: NZD
-Ngultrum: BTN
-North Korean Won: KPW
-Norwegian Krone: NOK
-Nuevo Sol: PEN
-Ouguiya: MRO
-Pa’anga: TOP
-Pakistan Rupee: PKR
-Pataca: MOP
-Peso Convertible: CUC
-Peso Uruguayo: UYU
-Philippine Peso: PHP
-Pound Sterling: GBP
-Pula: BWP
-Qatari Rial: QAR
-Quetzal: GTQ
-Rand: ZAR
-Rial Omani: OMR
-Riel: KHR
-Rufiyaa: MVR
-Rupiah: IDR
-Russian Ruble: RUB
-Rwanda Franc: RWF
-Saint Helena Pound: SHP
-Saudi Riyal: SAR
-Serbian Dinar: RSD
-Seychelles Rupee: SCR
-Singapore Dollar: SGD
-Solomon Islands Dollar: SBD
-Som: KGS
-Somali Shilling: SOS
-Somoni: TJS
-South Sudanese Pound: SSP
-Sri Lanka Rupee: LKR
-Sucre: XSU
-Sudanese Pound: SDG
-Surinam Dollar: SRD
-Swedish Krona: SEK
-Swiss Franc: CHF
-Syrian Pound: SYP
-Taka: BDT
-Tala: WST
-Tanzanian Shilling: TZS
-Tenge: KZT
-Trinidad and Tobago Dollar: TTD
-Tugrik: MNT
-Tunisian Dinar: TND
-Turkish Lira: TRY
-Turkmenistan New Manat: TMT
-UAE Dirham: AED
-Uganda Shilling: UGX
-Unidad de Valor Real: COU
-Unidades de fomento: CLF
-Uruguay Peso en Unidades Indexadas (URUIURUI): UYI
-US Dollar: USD
-US Dollar (Next day): USN
-US Dollar (Same day): USS
-Uzbekistan Sum: UZS
-Vatu: VUV
-WIR Euro: CHE
-WIR Franc: CHW
-Won: KRW
-Yemeni Rial: YER
-Yen: JPY
-Yuan Renminbi (Chinese Yen): CNY
-Zambian Kwacha: ZMW
-Zimbabwe Dollar: ZWL
-Zloty: PLN
+currency_symbols:
+  eur: €
+  gbp: £
+  usd: $
+  cny: ¥
+  jpy: ¥
+currency_codes:
+  Afghani: AFN
+  ADB Unit of Account: XUA
+  Algerian Dinar: DZD
+  Argentine Peso: ARS
+  Armenian Dram: AMD
+  Aruban Florin: AWG
+  Australian Dollar: AUD
+  Azerbaijanian Manat: AZN
+  Bahamian Dollar: BSD
+  Bahraini Dinar: BHD
+  Baht: THB
+  Balboa: PAB
+  Barbados Dollar: BBD
+  Belarussian Ruble: BYR
+  Belize Dollar: BZD
+  Bermudian Dollar: BMD
+  Bolivar: VEF
+  Boliviano: BOB
+  Brazilian Real: BRL
+  Brunei Dollar: BND
+  Bulgarian Lev: BGN
+  Burundi Franc: BIF
+  Canadian Dollar: CAD
+  Cape Verde Escudo: CVE
+  Cayman Islands Dollar: KYD
+  CFA Franc BCEAO: XOF
+  CFA Franc BEAC: XAF
+  CFP Franc: XPF
+  Chilean Peso: CLP
+  Colombian Peso: COP
+  Comoro Franc: KMF
+  Congolese Franc: CDF
+  Convertible Mark: BAM
+  Cordoba Oro: NIO
+  Costa Rican Colon: CRC
+  Croatian Kuna: HRK
+  Cuban Peso: CUP
+  Czech Koruna: CZK
+  Dalasi: GMD
+  Danish Krone: DKK
+  Denar: MKD
+  Djibouti Franc: DJF
+  Dobra: STD
+  Dominican Peso: DOP
+  Dong: VND
+  East Caribbean Dollar: XCD
+  Egyptian Pound: EGP
+  El Salvador Colon: SVC
+  Ethiopian Birr: ETB
+  Euro: EUR
+  Falkland Islands Pound: FKP
+  Fiji Dollar: FJD
+  Forint: HUF
+  Ghana Cedi: GHS
+  Gibraltar Pound: GIP
+  Gourde: HTG
+  Guarani: PYG
+  Guinea Franc: GNF
+  Guyana Dollar: GYD
+  Hong Kong Dollar: HKD
+  Hryvnia: UAH
+  Iceland Krona: ISK
+  Indian Rupee: INR
+  Iranian Rial: IRR
+  Iraqi Dinar: IQD
+  Jamaican Dollar: JMD
+  Jordanian Dinar: JOD
+  Kenyan Shilling: KES
+  Kina: PGK
+  Kip: LAK
+  Kuwaiti Dinar: KWD
+  Kwacha: MWK
+  Kwanza: AOA
+  Kyat: MMK
+  Lari: GEL
+  Latvian Lats: LVL
+  Lebanese Pound: LBP
+  Lek: ALL
+  Lempira: HNL
+  Leone: SLL
+  Liberian Dollar: LRD
+  Libyan Dinar: LYD
+  Lilangeni: SZL
+  Lithuanian Litas: LTL
+  Loti: LSL
+  Malagasy Ariary: MGA
+  Malaysian Ringgit: MYR
+  Mauritius Rupee: MUR
+  Mexican Peso: MXN
+  Mexican Unidad de Inversion (UDI): MXV
+  Moldovan Leu: MDL
+  Moroccan Dirham: MAD
+  Mozambique Metical: MZN
+  Mvdol: BOV
+  Naira: NGN
+  Nakfa: ERN
+  Namibia Dollar: NAD
+  Nepalese Rupee: NPR
+  Netherlands Antillean Guilder: ANG
+  New Israeli Sheqel: ILS
+  New Romanian Leu: RON
+  New Taiwan Dollar: TWD
+  New Zealand Dollar: NZD
+  Ngultrum: BTN
+  North Korean Won: KPW
+  Norwegian Krone: NOK
+  Nuevo Sol: PEN
+  Ouguiya: MRO
+  Pa’anga: TOP
+  Pakistan Rupee: PKR
+  Pataca: MOP
+  Peso Convertible: CUC
+  Peso Uruguayo: UYU
+  Philippine Peso: PHP
+  Pound Sterling: GBP
+  Pula: BWP
+  Qatari Rial: QAR
+  Quetzal: GTQ
+  Rand: ZAR
+  Rial Omani: OMR
+  Riel: KHR
+  Rufiyaa: MVR
+  Rupiah: IDR
+  Russian Ruble: RUB
+  Rwanda Franc: RWF
+  Saint Helena Pound: SHP
+  Saudi Riyal: SAR
+  Serbian Dinar: RSD
+  Seychelles Rupee: SCR
+  Singapore Dollar: SGD
+  Solomon Islands Dollar: SBD
+  Som: KGS
+  Somali Shilling: SOS
+  Somoni: TJS
+  South Sudanese Pound: SSP
+  Sri Lanka Rupee: LKR
+  Sucre: XSU
+  Sudanese Pound: SDG
+  Surinam Dollar: SRD
+  Swedish Krona: SEK
+  Swiss Franc: CHF
+  Syrian Pound: SYP
+  Taka: BDT
+  Tala: WST
+  Tanzanian Shilling: TZS
+  Tenge: KZT
+  Trinidad and Tobago Dollar: TTD
+  Tugrik: MNT
+  Tunisian Dinar: TND
+  Turkish Lira: TRY
+  Turkmenistan New Manat: TMT
+  UAE Dirham: AED
+  Uganda Shilling: UGX
+  Unidad de Valor Real: COU
+  Unidades de fomento: CLF
+  Uruguay Peso en Unidades Indexadas (URUIURUI): UYI
+  US Dollar: USD
+  US Dollar (Next day): USN
+  US Dollar (Same day): USS
+  Uzbekistan Sum: UZS
+  Vatu: VUV
+  WIR Euro: CHE
+  WIR Franc: CHW
+  Won: KRW
+  Yemeni Rial: YER
+  Yen: JPY
+  Yuan Renminbi (Chinese Yen): CNY
+  Zambian Kwacha: ZMW
+  Zimbabwe Dollar: ZWL
+  Zloty: PLN

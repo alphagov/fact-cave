@@ -52,13 +52,13 @@ class FactPresenter
   end
 
   def formatted_currency_value
-    currency_symbol = CurrencyFact::CURRENCY_SYMBOLS[@fact.currency_code.downcase.to_sym]
+    currency_symbol = CurrencyFact.currency_symbols[@fact.currency_code.downcase]
     amount = sprintf("%.2f", @fact.value) 
     amount = @view_context.number_with_delimiter(amount)
     if currency_symbol
       "#{currency_symbol}#{amount}"
     else
-      "#{amount} #{self.class.currency_codes.key(@fact.currency_code)}"
+      "#{amount} #{CurrencyFact.currency_codes.key(@fact.currency_code)}"
     end
   end
 
@@ -71,7 +71,4 @@ class FactPresenter
     "#{@view_context.number_with_delimiter(value)}#{@fact.unit}"
   end
 
-  def self.currency_codes
-    @currency_codes ||= YAML.load(File.open("lib/data/iso_4217_currency_codes.yml").read)  
-  end
 end
