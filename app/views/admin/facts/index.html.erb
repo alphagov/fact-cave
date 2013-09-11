@@ -5,7 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Slug</th>
+      <th>Type</th>
       <th>Value</th>
+      <th>Formatted value</th>
       <th></th>
     </tr>
   </thead>
@@ -14,7 +16,9 @@
       <tr>
         <td><%= fact.name %></td>
         <td><%= fact.slug %></td>
+        <td><%= fact_type(fact) %></td>
         <td><%= fact.value %></td>
+        <td><%= FactPresenter.new(fact, self).formatted_value %>
         <td class="controls">
           <%= link_to "Edit", edit_admin_fact_path(fact.to_param), :class => 'btn btn-primary' %>
           <%= button_to "Delete", admin_fact_path(fact.to_param), 
@@ -25,4 +29,7 @@
   </tbody>
 </table>
 
-<%= link_to "New Fact", new_admin_fact_path, :class => 'btn btn-success' %>
+<%= link_to "New Currency Fact", new_admin_fact_path(:data_type => 'currency_fact'), :class => 'btn btn-success' %>
+<%= link_to "New Date Fact", new_admin_fact_path(:data_type => 'date_fact'), :class => 'btn btn-success' %>
+<%= link_to "New Numeric Fact", new_admin_fact_path(:data_type => 'numeric_fact'), :class => 'btn btn-success' %>
+<%= link_to "New Text Fact", new_admin_fact_path, :class => 'btn btn-success' %>
