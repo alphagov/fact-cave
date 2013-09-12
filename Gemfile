@@ -13,6 +13,8 @@ gem 'unicorn', '4.6.2'
 gem 'plek', '1.3.1'
 gem 'gds-sso', '3.1.0'
 
+gem 'cancan'
+
 gem 'therubyracer', '0.11.4'
 gem 'less-rails-bootstrap', '2.3.2'
 gem 'jquery-rails', '2.2.1'
