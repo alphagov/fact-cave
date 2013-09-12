@@ -23,7 +23,8 @@ class CurrencyFact < Fact
   attr_accessible :currency_code
  
   validate :valid_currency_code
- 
+  validates_numericality_of :value
+
   def self.currency_codes
     currency_data['currency_codes']
   end
@@ -49,6 +50,7 @@ class NumericFact < Fact
   field :unit, :type => String
   field :value, :type => Float
   attr_accessible :unit
+  validates_numericality_of :value
 end
 
 class DateFact < Fact

@@ -64,6 +64,10 @@ describe CurrencyFact do
     fact.valid?
     expect(fact).to have(1).error_on(:currency_code)
   end
+  it "should validate numericality of value" do
+    fact.value = 'foo'
+    expect(fact).not_to be_valid
+  end
 end 
 
 describe DateFact do
@@ -74,12 +78,16 @@ describe DateFact do
 end
 
 describe NumericFact do
+  let(:fact) { FactoryGirl.build(:numeric_fact) }
   it "should store a Float value" do
-    fact = FactoryGirl.build(:numeric_fact)
     expect(fact.value.class).to be(Float)
   end
   it "can hold a formatting symbol" do
-    fact = FactoryGirl.build(:numeric_fact)
     expect(fact.unit).to eq('%')
+  end
+  it "should validate numericality of value" do
+    fact.value = 'foo'
+    expect(fact).not_to be_valid
+    expect(fact).to have(1).error_on(:value)
   end
 end
