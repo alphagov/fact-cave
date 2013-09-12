@@ -1,6 +1,15 @@
 # encoding: UTF-8
 require 'spec_helper'
 
+feature "attempting to create a fact as a non-editorial user" do
+  it "should redirect to the facts index and display an explanatory message" do
+    login_as_stub_user
+    visit "/admin/facts/new"
+    page.should have_content "You are not authorized to access this page."
+    current_path.should == "/admin/facts"
+  end
+end
+
 feature "creating a fact" do
 
   before :each do
