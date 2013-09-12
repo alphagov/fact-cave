@@ -20,16 +20,19 @@
         <td><%= fact.value %></td>
         <td><%= FactPresenter.new(fact, self).formatted_value %>
         <td class="controls">
+        <% if can? :crud, fact %>
           <%= link_to "Edit", edit_admin_fact_path(fact.to_param), :class => 'btn btn-primary' %>
           <%= button_to "Delete", admin_fact_path(fact.to_param), 
             :confirm => "Permanently delete '#{fact.name}'?", :method => :delete, :class => 'btn btn-danger' %>
+        <% end %>  
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% if can? :crud, Fact %>
 <%= link_to "New Currency Fact", new_admin_fact_path(:data_type => 'currency_fact'), :class => 'btn btn-success' %>
 <%= link_to "New Date Fact", new_admin_fact_path(:data_type => 'date_fact'), :class => 'btn btn-success' %>
 <%= link_to "New Numeric Fact", new_admin_fact_path(:data_type => 'numeric_fact'), :class => 'btn btn-success' %>
 <%= link_to "New Text Fact", new_admin_fact_path, :class => 'btn btn-success' %>
+<% end %>

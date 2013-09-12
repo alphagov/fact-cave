@@ -4,7 +4,8 @@ require 'spec_helper'
 feature "creating a fact" do
 
   before :each do
-    login_as_stub_user
+    editor = FactoryGirl.create(:user, :permissions => ['signin', 'edit fact'])
+    login_as(editor)
   end
 
   it "should display validation errors if the fact couldn't be saved" do
