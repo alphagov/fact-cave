@@ -1,6 +1,6 @@
 class UpdateVatRateType < Mongoid::Migration
   def self.up
-    vat_rate_fact = Fact.find_by(slug: 'vat-rate')
+    vat_rate_fact = Fact.where(slug: 'vat-rate').first
     if vat_rate_fact
       vat_rate_fact = vat_rate_fact.becomes(NumericFact)
       vat_rate_fact.value = 20
