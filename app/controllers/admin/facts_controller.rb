@@ -2,6 +2,12 @@ class Admin::FactsController < Admin::AdminController
 
   before_filter :initialize_fact, :only => [:new, :create]
   before_filter :find_fact, :only => [:edit, :update, :destroy]
+  
+  load_and_authorize_resource :except => :index
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to admin_facts_path, :alert => exception.message
+  end
 
   def index
     @facts = Fact.asc(:slug)

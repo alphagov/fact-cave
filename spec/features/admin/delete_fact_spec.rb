@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "deleting a fact" do
 
   before :each do
-    login_as_stub_user
+    login_as_stub_editor
     
     3.times { |n| FactoryGirl.create(:fact, :slug => "fact-#{n + 1}", :name => "Fact #{n + 1}") }
   end
