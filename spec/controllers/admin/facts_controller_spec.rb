@@ -93,13 +93,13 @@ describe Admin::FactsController do
 
     describe "PUT update" do
       before do
-        @fact = FactoryGirl.create(:fact)
+        @fact = FactoryGirl.create(:currency_fact)
       end
       it "should update a fact" do
         put :update, :id => @fact.to_param, :fact => {
           :slug => "the-painful-truth", :name => "The painful truth",
           :description => "The truth hurts sometimes", :value => "1000000",
-          :data_type => "currency", :currency_code => "EUR"
+          :currency_code => "EUR"
         }
         response.status.should == 302 
         assigns(:fact).should == @fact
@@ -118,13 +118,48 @@ describe Admin::FactsController do
     end
   end
 
-  describe "GET new without permission" do
-    before do
+  describe "performing actions without permission" do
+    before(:each) do
       login_as_stub_user
+      @fact = FactoryGirl.create(:numeric_fact)
     end
-    it "should deny access and redirect" do
-      get :new
-      response.should redirect_to(admin_facts_path)
+    describe "GET new" do
+      it "should deny access and redirect" do
+        get :new
+        response.should redirect_to(admin_facts_path)
+      end
+    end
+    describe "POST create" do
+      it "should deny access and redirect" do
+        post :create, :currency_fact => {
+          :slug => "uk-tax-disc", :name => "UK tax disc",
+          :description => "Price of a tax disc", :value => 199.99,
+          :currency_code => 'GBP'
+        }
+        response.should redirect_to(admin_facts_path)
+      end
+    end
+    describe "GET edit" do
+      it "should deny access and redirect" do
+        get :edit, :id => @fact.to_param
+        response.should redirect_to(admin_facts_path)
+      end
+    end
+    describe "PUT update" do
+      it "should deny access and redirect" do
+        put :update, :id => @fact.to_param, :fact => {
+          :slug => "the-painful-truth", :name => "The painful truth",
+          :description => "The truth hurts sometimes", :value => "1000000",
+          :currency_code => "EUR"
+        }
+        response.should redirect_to(admin_facts_path)
+      end
+    end
+    describe "DELETE destroy" do
+      it "should deny access and redirect" do
+        delete :destroy, :id => @fact.to_param
+        response.should redirect_to(admin_facts_path)
+      end
     end
   end
 end
