@@ -129,13 +129,14 @@ describe Admin::FactsController do
       end
     end
     describe "POST create" do
-      it "should deny access and redirect" do
+      it "should deny access and redirect without creating a fact" do
         post :create, :currency_fact => {
           :slug => "uk-tax-disc", :name => "UK tax disc",
           :description => "Price of a tax disc", :value => 199.99,
           :currency_code => 'GBP'
         }
         response.should redirect_to(admin_facts_path)
+        CurrencyFact.where(:slug => 'uk-tax-disc').count.should == 0
       end
     end
     describe "GET edit" do
@@ -145,19 +146,22 @@ describe Admin::FactsController do
       end
     end
     describe "PUT update" do
-      it "should deny access and redirect" do
+      it "should deny access and redirect without updating" do
         put :update, :id => @fact.to_param, :fact => {
           :slug => "the-painful-truth", :name => "The painful truth",
           :description => "The truth hurts sometimes", :value => "1000000",
           :currency_code => "EUR"
         }
         response.should redirect_to(admin_facts_path)
+        @fact.reload
+        @fact.slug.should_not == 'the-painful-truth'
       end
     end
     describe "DELETE destroy" do
-      it "should deny access and redirect" do
+      it "should deny access and redirect without deleting the fact" do
         delete :destroy, :id => @fact.to_param
         response.should redirect_to(admin_facts_path)
+        NumericFact.where(:slug => @fact.slug).count.should == 1
       end
     end
   end
