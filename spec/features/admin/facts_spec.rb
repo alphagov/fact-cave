@@ -61,7 +61,7 @@ feature "navigating to new fact form" do
   it "should permit editors" do  
 
     FactoryGirl.create(:fact, :name => 'Change me!')
-    login_as(FactoryGirl.create(:user, :permissions => ['signin', 'edit fact']))
+    login_as_stub_editor
     
     visit '/admin/facts'
 

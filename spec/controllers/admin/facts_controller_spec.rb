@@ -23,8 +23,7 @@ describe Admin::FactsController do
 
   describe "editorial actions" do
     before(:each) do
-      editor = FactoryGirl.create(:user, permissions: ['signin', 'edit fact'])
-      login_as(editor)
+      login_as_stub_editor
     end
 
     describe "GET new" do

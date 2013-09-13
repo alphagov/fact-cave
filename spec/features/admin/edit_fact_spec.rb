@@ -3,8 +3,7 @@ require 'spec_helper'
 feature "editing a fact" do
 
   before :each do
-    editor = FactoryGirl.create(:user, :permissions => ['signin', 'edit fact'])
-    login_as(editor)
+    login_as_stub_editor
 
     @fact = FactoryGirl.create(:currency_fact,
                               :name => 'Vehicle excise duty',
