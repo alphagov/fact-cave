@@ -63,7 +63,7 @@ class FactPresenter
   end
 
   def formatted_date_value
-    @fact.value.strftime("%Y-%m-%d")
+    @fact.value.strftime("%e %B %Y")
   end
 
   def formatted_numeric_value
