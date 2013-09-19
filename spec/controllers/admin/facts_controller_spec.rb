@@ -85,8 +85,8 @@ describe Admin::FactsController do
 
       describe "logging" do
         before :each do
-          created_at = DateTime.now
-          Fact.any_instance.stub(:created_at).and_return(created_at)
+          created_at = Time.now.utc
+          Timecop.freeze(created_at)
           @valid_params = {
             slug:  "the-painful-truth", name: "The painful truth",
             description: "The truth hurts sometimes", value: "Life's not fair"
@@ -107,7 +107,8 @@ describe Admin::FactsController do
                   "name" => User.first.name,
                   "email" => User.first.email
                 }
-              }
+              },
+              "@timestamp" => created_at
             }
         end
 
@@ -158,8 +159,8 @@ describe Admin::FactsController do
 
       describe "logging" do
         before :each do
-          updated_at = DateTime.now
-          Fact.any_instance.stub(:updated_at).and_return(updated_at)
+          updated_at = Time.now.utc
+          Timecop.freeze(updated_at)
           @valid_params = {
             slug:  "the-painful-truth", name: "The painful truth",
             description: @fact[:description], value: @fact[:value],
@@ -189,7 +190,8 @@ describe Admin::FactsController do
                   "name" => User.first.name,
                   "email" => User.first.email
                 }
-              }
+              },
+              "@timestamp" => updated_at
             }
         end
 
@@ -220,7 +222,8 @@ describe Admin::FactsController do
 
       describe "logging" do
         before :each do
-          @destroyed_at = DateTime.now
+          destroyed_at = Time.now.utc
+          Timecop.freeze(@destroyed_at)
           @expected =
             {
               "@fields" => {
@@ -232,17 +235,17 @@ describe Admin::FactsController do
                     "value" => @fact[:value],
                     "description" => @fact[:description]
                 },
-                "message" => "Fact destroyed at #{@destroyed_at}",
+                "message" => "Fact destroyed at #{destroyed_at}",
                 "user" => {
                   "name" => User.first.name,
                   "email" => User.first.email
                 }
-              }
+              },
+              "@timestamp" => destroyed_at
             }
         end
 
         it "should write a JSON log entry to file" do
-          DateTime.stub(:now).and_return(@destroyed_at)
           file = mock('file')
           File.stub(:open).and_yield(file)
           file.should_receive(:puts).with(@expected.to_json)

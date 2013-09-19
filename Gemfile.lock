@@ -88,7 +88,7 @@ GEM
     less-rails-bootstrap (2.3.2)
       less-rails (~> 2.3.1)
     libv8 (3.11.8.17)
-    logstash-event (1.2.01)
+    logstash-event (1.2.02)
     logstasher (0.2.8)
       logstash-event
     mail (2.5.4)
@@ -188,6 +188,7 @@ GEM
       ref
     thor (0.18.1)
     tilt (1.4.1)
+    timecop (0.6.3)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -228,5 +229,6 @@ DEPENDENCIES
   rspec-rails (= 2.13.2)
   simplecov-rcov (= 0.2.3)
   therubyracer (= 0.11.4)
+  timecop (= 0.6.3)
   uglifier (>= 1.0.3)
   unicorn (= 4.6.2)

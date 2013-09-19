@@ -69,11 +69,14 @@ class Admin::FactsController < Admin::AdminController
 
   def log_created_fact
     if @fact.persisted?
-      msg = {"message" => "#{@fact.class} created at #{@fact.created_at}"}
+      created_at = Time.now.utc
+      msg = {"message" => "#{@fact.class} created at #{created_at}"}
       log_entry = {
         "@fields" => {
-          "event_type" => "create"
-        }.merge("fact_data" => extract_attrs_to_log).merge(msg).merge(user_details)
+          "event_type" => "create",
+          "fact_data" => extract_attrs_to_log
+        }.merge(msg).merge(user_details),
+        "@timestamp" => created_at
       }
       write_log(log_entry)
     end
@@ -87,7 +90,8 @@ class Admin::FactsController < Admin::AdminController
     before_state = extract_attrs_to_log
     yield
     if @fact.valid?
-      msg = "#{@fact.class} updated at #{@fact.updated_at}"
+      updated_at = Time.now.utc
+      msg = "#{@fact.class} updated at #{updated_at}"
       log_entry =  {
         "@fields" => {
           "event_type" => "update",
@@ -96,7 +100,8 @@ class Admin::FactsController < Admin::AdminController
             "changes" => extract_attrs_to_log.diff(before_state)
           },
           "message" => msg
-        }.merge(user_details)
+        }.merge(user_details),
+        "@timestamp" => updated_at
       }
       write_log(log_entry)
     end
@@ -104,12 +109,14 @@ class Admin::FactsController < Admin::AdminController
 
   def log_destroyed_fact
     if @fact.destroyed?
+      deleted_at = Time.now.utc
       before_state = extract_attrs_to_log
-      msg = {"message" => "#{@fact.class} destroyed at #{DateTime.now}"}
+      msg = {"message" => "#{@fact.class} destroyed at #{deleted_at}"}
       log_entry = {
         "@fields" => {
           "event_type" => "destroy"
-        }.merge("fact_data" => before_state).merge(msg).merge(user_details)
+        }.merge("fact_data" => before_state).merge(msg).merge(user_details),
+        "@timestamp" => deleted_at
       }
       write_log(log_entry)
     end
