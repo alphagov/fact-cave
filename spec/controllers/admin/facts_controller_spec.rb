@@ -77,6 +77,54 @@ describe Admin::FactsController do
         fact = NumericFact.find_by(:slug => 'life-the-universe-and-everything')
         fact.value.should == 42.0
       end
+
+      def post_create
+        params = { fact: @valid_params }
+        post :create, params
+      end
+
+      describe "logging" do
+        before :each do
+          created_at = Time.now.utc
+          Timecop.freeze(created_at)
+          @valid_params = {
+            slug:  "the-painful-truth", name: "The painful truth",
+            description: "The truth hurts sometimes", value: "Life's not fair"
+          }
+          @expected =
+            {
+              "@fields" => {
+                "event_type" => "create",
+                "fact_data" => {
+                  "_type" => "Fact",
+                  "slug" => @valid_params[:slug],
+                  "name" => @valid_params[:name],
+                  "description" => @valid_params[:description],
+                  "value" => @valid_params[:value]
+                },
+                "message" => "Fact created at #{created_at}",
+                "user" => {
+                  "name" => User.first.name,
+                  "email" => User.first.email
+                }
+              },
+              "@timestamp" => created_at
+            }
+        end
+
+        it "should write a JSON log entry to file" do
+          file = mock('file')
+          File.stub(:open).and_yield(file)
+          file.should_receive(:puts).with(@expected.to_json)
+          post_create
+        end
+
+        it "should not attempt to log an invalid fact" do
+          controller.should_not_receive(:write_log)
+          @valid_params.merge!(name: '')
+          post_create
+        end
+      end
     end
 
     describe "GET edit" do
@@ -92,7 +140,7 @@ describe Admin::FactsController do
 
     describe "PUT update" do
       before do
-        @fact = FactoryGirl.create(:currency_fact)
+        @fact = FactoryGirl.create(:currency_fact, description: '')
       end
       it "should update a fact" do
         put :update, :id => @fact.to_param, :fact => {
@@ -103,16 +151,112 @@ describe Admin::FactsController do
         response.status.should == 302 
         assigns(:fact).should == @fact
       end
+
+      def put_update
+        params = { id: @fact.to_param, fact: @valid_params }
+        put :update, params
+      end
+
+      describe "logging" do
+        before :each do
+          updated_at = Time.now.utc
+          Timecop.freeze(updated_at)
+          @valid_params = {
+            slug:  "the-painful-truth", name: "The painful truth",
+            description: @fact[:description], value: @fact[:value],
+            data_type: "currency", currency_code: "EUR"
+          }
+          @expected =
+            {
+              "@fields" => {
+                "event_type" => "update",
+                "fact_data" => {
+                  "before_state" => {
+                    "_type" => "CurrencyFact",
+                    "slug" => @fact[:slug],
+                    "name" => @fact[:name],
+                    "value" => @fact[:value],
+                    "currency_code" => @fact[:currency_code],
+                    "description" => @fact[:description],
+                  },
+                  "changes" => {
+                    "slug" => @valid_params[:slug],
+                    "name" => @valid_params[:name],
+                    "currency_code" => @valid_params[:currency_code],
+                  }
+                },
+                "message" => "CurrencyFact updated at #{updated_at}",
+                "user" => {
+                  "name" => User.first.name,
+                  "email" => User.first.email
+                }
+              },
+              "@timestamp" => updated_at
+            }
+        end
+
+        it "should write a JSON log entry to file" do
+          file = mock('file')
+          File.stub(:open).and_yield(file)
+          file.should_receive(:puts).with(@expected.to_json)
+          put_update
+        end
+
+        it "should not attempt to log an invalid fact" do
+          controller.should_not_receive(:write_log)
+          @valid_params.merge!(name: '')
+          put_update
+        end
+      end
     end
 
     describe "DELETE destroy" do
       before do
-        @fact = FactoryGirl.create(:fact)
+        @fact = FactoryGirl.create(:fact, description: '')
       end
       it "should delete a fact" do
         delete :destroy, :id => @fact.to_param
         assigns(:fact).should == @fact
         expect { Fact.find(@fact.to_param) }.to raise_error
+      end
+
+      describe "logging" do
+        before :each do
+          destroyed_at = Time.now.utc
+          Timecop.freeze(@destroyed_at)
+          @expected =
+            {
+              "@fields" => {
+                "event_type" => "destroy",
+                "fact_data" => {
+                    "_type" => "Fact",
+                    "slug" => @fact[:slug],
+                    "name" => @fact[:name],
+                    "value" => @fact[:value],
+                    "description" => @fact[:description]
+                },
+                "message" => "Fact destroyed at #{destroyed_at}",
+                "user" => {
+                  "name" => User.first.name,
+                  "email" => User.first.email
+                }
+              },
+              "@timestamp" => destroyed_at
+            }
+        end
+
+        it "should write a JSON log entry to file" do
+          file = mock('file')
+          File.stub(:open).and_yield(file)
+          file.should_receive(:puts).with(@expected.to_json)
+          delete :destroy, :id => @fact.to_param
+        end
+
+        it "should not attempt to log a fact that can't be detroyed" do
+          Fact.any_instance.stub(:destroyed?).and_return(false)
+          controller.should_not_receive(:write_log)
+          delete :destroy, :id => @fact.to_param
+        end
       end
     end
   end
