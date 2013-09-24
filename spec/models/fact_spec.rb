@@ -71,9 +71,9 @@ describe CurrencyFact do
 end 
 
 describe DateFact do
-  it "should store a DateTime value" do
+  it "should store a Date value" do
     fact = FactoryGirl.build(:date_fact)
-    expect(fact.value.class).to be(DateTime)
+    expect(fact.value.class).to be(Date)
   end
 end
 

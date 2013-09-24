@@ -54,5 +54,5 @@ class NumericFact < Fact
 end
 
 class DateFact < Fact
-  field :value, :type => DateTime
+  field :value, :type => Date
 end
