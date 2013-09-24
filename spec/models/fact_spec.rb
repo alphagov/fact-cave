@@ -54,7 +54,7 @@ end
 describe CurrencyFact do
   let(:fact) { FactoryGirl.build(:currency_fact) }
   it "should store a BigDecimal value" do
-    expect(fact.value.class).to be(BigDecimal)
+    expect(fact.value.class).to be(Float)
   end
   it "should have a currency code" do
     expect(fact.currency_code).to eq('GBP')

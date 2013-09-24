@@ -58,7 +58,7 @@ feature "serving facts" do
       "id" => "http://www.example.com/facts/uk-tax-disc",
       "details" => {
         "description" => "How much a tax disc costs",
-        "value" => "180.0",
+        "value" => 180.0,
         "formatted_value" => "£180.00"
       },
       "name" => "Vehicle excise duty",
