@@ -58,7 +58,7 @@ feature "serving facts" do
       "id" => "http://www.example.com/facts/uk-tax-disc",
       "details" => {
         "description" => "How much a tax disc costs",
-        "value" => "180.0",
+        "value" => 180.0,
         "formatted_value" => "£180.00"
       },
       "name" => "Vehicle excise duty",
@@ -79,7 +79,7 @@ feature "serving facts" do
       "id" => "http://www.example.com/facts/battle-of-hastings",
       "details" => {
         "description" => "The date of the Battle of Hastings",
-        "value" => '1066-10-14T00:00:00+00:00',
+        "value" => '1066-10-14',
         "formatted_value" => "14 October 1066"
       },
       "name" => "Battle of Hastings",

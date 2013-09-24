@@ -18,7 +18,7 @@ end
 
 class CurrencyFact < Fact
   field :currency_code, :type => String
-  field :value, :type => BigDecimal
+  field :value, :type => Float
  
   attr_accessible :currency_code
  
@@ -54,5 +54,5 @@ class NumericFact < Fact
 end
 
 class DateFact < Fact
-  field :value, :type => DateTime
+  field :value, :type => Date
 end
