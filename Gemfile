@@ -6,7 +6,7 @@ gem 'mongoid', '3.1.4'
 gem 'mongoid_rails_migrations', '1.0.0'
 
 gem 'exception_notification', '3.0.1'
-gem 'logstasher', '0.4.0'
+gem 'logstasher', '0.4.1'
 gem 'aws-ses', '0.5.0', :require => 'aws/ses'
 
 gem 'unicorn', '4.6.2'
