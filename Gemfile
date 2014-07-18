@@ -12,7 +12,7 @@ gem 'aws-ses', '0.5.0', :require => 'aws/ses'
 gem 'unicorn', '4.6.2'
 
 gem 'plek', '1.3.1'
-gem 'gds-sso', '9.2.0'
+gem 'gds-sso', '9.3.0'
 
 gem 'cancan', '1.6.10'
 
